@@ -1,6 +1,6 @@
 import { useLanguage } from "../i18n/LanguageContext";
 import type { Dictionary } from "../i18n/translations";
-import { CapIcon, FacebookIcon, MailIcon, PhoneIcon } from "./icons";
+import { FacebookIcon, MailIcon, PhoneIcon } from "./icons";
 
 const QUICK_LINKS: { key: keyof Dictionary["nav"]; href: string }[] = [
   { key: "home", href: "#accueil" },
@@ -24,8 +24,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <a href="#accueil" className="flex items-center gap-3">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-gold-400">
-                <CapIcon className="size-6" />
+              <span className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white shadow-soft ring-2 ring-white/20">
+                <img
+                  src="/logo.jpg"
+                  alt="Logo Groupe Scolaire Bilingue Espérance Divine"
+                  className="size-full object-cover"
+                />
               </span>
               <span className="font-heading text-lg font-semibold">{t.schoolName}</span>
             </a>

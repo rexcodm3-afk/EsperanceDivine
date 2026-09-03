@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "../i18n/LanguageContext";
 import type { Dictionary } from "../i18n/translations";
-import { CapIcon, MenuIcon, XIcon } from "./icons";
+import { MenuIcon, XIcon } from "./icons";
 
 const NAV_ITEMS: { key: keyof Dictionary["nav"]; href: string }[] = [
   { key: "home", href: "#accueil" },
@@ -41,11 +41,11 @@ export default function Navbar() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#accueil" className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
           <span
-            className={`flex size-11 shrink-0 items-center justify-center rounded-full transition-colors ${
-              scrolled || open ? "bg-navy-900 text-gold-400" : "bg-white/15 text-gold-300 ring-1 ring-white/40"
+            className={`flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white shadow-soft ring-2 transition-colors ${
+              scrolled || open ? "ring-navy-100" : "ring-white/50"
             }`}
           >
-            <CapIcon className="size-6" />
+            <img src="/logo.jpg" alt="Logo Groupe Scolaire Bilingue Espérance Divine" className="size-full object-cover" />
           </span>
           <span className="min-w-0 leading-tight">
             <span
