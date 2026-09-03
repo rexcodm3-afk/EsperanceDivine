@@ -8,13 +8,13 @@ export default function Hero() {
   return (
     <section id="accueil" className="relative flex min-h-[100svh] items-center overflow-hidden bg-navy-950">
       <img
-        src={img.heroClassroom}
-        alt="Élèves dans une salle de classe à Espérance Divine"
+        src={img.heroSchool}
+        alt="Bâtiment du Groupe Scolaire Bilingue Espérance Divine à Bonabéri, Douala"
         className="absolute inset-0 size-full object-cover"
         loading="eager"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-900/55" />
-      <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-navy-950/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/80 to-navy-900/25" />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-transparent to-navy-950/40" />
       <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-navy-700 via-gold-400 to-leaf-500" />
 
       <div className="relative mx-auto w-full max-w-7xl px-4 pt-24 pb-20 sm:px-6 lg:px-8">

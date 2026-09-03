@@ -1,13 +1,17 @@
+import heroSchool from "../assets/hero-school.jpg";
+
 // Curated stock photography used as placeholder imagery for this demo.
-// NOTE: the school has not yet supplied official photographs — replace these
-// Unsplash URLs with real campus photos as soon as they are available.
+// NOTE: the school has not yet supplied a full official photo set — replace
+// these Unsplash URLs with real campus photos as soon as they are available.
+// `heroSchool` below is a genuine photo of the school building.
 
 function unsplash(id: string, w: number) {
   return `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
 }
 
 export const img = {
-  heroClassroom: unsplash("1567057419565-4349c49d8a04", 1600),
+  heroSchool,
+  classroom: unsplash("1567057419565-4349c49d8a04", 1000),
   aboutClassroom: unsplash("1509062522246-3755977927d7", 1200),
   earlyYears: unsplash("1588075592446-265fd1e6e76f", 1000),
   primaryCycle: unsplash("1522661067900-ab829854a57f", 1000),
@@ -23,7 +27,8 @@ export const img = {
 } as const;
 
 export const gallery = [
-  { src: img.heroClassroom, w: 1200, alt: "Élèves réunis en salle de classe à Espérance Divine" },
+  { src: img.heroSchool, w: 1300, alt: "Façade du Groupe Scolaire Bilingue Espérance Divine à Bonabéri" },
+  { src: img.classroom, w: 1000, alt: "Élèves réunis en salle de classe à Espérance Divine" },
   { src: img.earlyYears, w: 1000, alt: "Jeunes enfants assis en cercle pendant une activité d'éveil" },
   { src: img.primaryCycle, w: 1000, alt: "Élève écrivant au tableau pendant un cours" },
   { src: img.personalGrowth, w: 1000, alt: "Enseignante accompagnant une élève dans son travail" },
