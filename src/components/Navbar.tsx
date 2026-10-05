@@ -17,6 +17,8 @@ export default function Navbar() {
   const { t, lang, setLang } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const onGalleryPage = window.location.pathname.replace(/\/+$/, "") === "/gallery";
+  const homeHref = (href: string) => (onGalleryPage ? `/${href}` : href);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -39,7 +41,7 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#accueil" className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
+        <a href={homeHref("#accueil")} className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
           <span
             className={`flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white shadow-soft ring-2 transition-colors ${
               scrolled || open ? "ring-navy-100" : "ring-white/50"
@@ -69,7 +71,7 @@ export default function Navbar() {
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={homeHref(item.href)}
               className={`text-sm font-medium transition-colors hover:text-gold-500 ${
                 scrolled ? "text-navy-800" : "text-white/90"
               }`}
@@ -82,7 +84,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-4 lg:flex">
           <LangSwitch scrolled={scrolled} lang={lang} setLang={setLang} />
           <a
-            href="#contact"
+            href={homeHref("#contact")}
             className="rounded-full bg-gold-400 px-5 py-2.5 text-sm font-semibold text-navy-950 shadow-soft transition-all hover:bg-gold-300 hover:shadow-lift"
           >
             {t.nav.cta}
@@ -113,7 +115,7 @@ export default function Navbar() {
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={homeHref(item.href)}
               onClick={() => setOpen(false)}
               className="rounded-lg px-3 py-3 text-base font-medium text-navy-800 transition-colors hover:bg-navy-50 hover:text-navy-950"
             >
@@ -121,7 +123,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#contact"
+            href={homeHref("#contact")}
             onClick={() => setOpen(false)}
             className="mt-2 rounded-full bg-gold-400 px-5 py-3 text-center text-base font-semibold text-navy-950 shadow-soft transition-colors hover:bg-gold-300"
           >

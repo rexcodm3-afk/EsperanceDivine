@@ -23,15 +23,14 @@ export default function SchoolLife() {
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {t.life.cards.map((card, i) => (
             <Reveal key={card.title} delay={(i % 4) as 0 | 1 | 2 | 3}>
-              <div className="group relative aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-lift">
+              <div className="group w-full overflow-hidden rounded-2xl bg-navy-900 shadow-lift">
                 <img
                   src={IMAGES[i]}
                   alt={card.title}
                   loading="lazy"
-                  className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="aspect-video w-full bg-navy-950 object-contain transition-transform duration-500 group-hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/25 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5">
+                <div className="p-5">
                   <h3 className="font-heading text-lg font-semibold text-white">{card.title}</h3>
                   <p className="mt-1.5 text-xs leading-relaxed text-white/80 sm:text-sm">{card.text}</p>
                 </div>

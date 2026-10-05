@@ -11,18 +11,26 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 function App() {
+  const isGalleryPage = window.location.pathname.replace(/\/+$/, "") === "/gallery";
+
   return (
     <LanguageProvider>
       <Navbar />
       <main>
-        <Hero />
-        <About />
-        <WhyChooseUs />
-        <Academics />
-        <SchoolLife />
-        <Gallery />
-        <News />
-        <Contact />
+        {isGalleryPage ? (
+          <Gallery fullPage />
+        ) : (
+          <>
+            <Hero />
+            <About />
+            <WhyChooseUs />
+            <Academics />
+            <SchoolLife />
+            <Gallery />
+            <News />
+            <Contact />
+          </>
+        )}
       </main>
       <Footer />
     </LanguageProvider>

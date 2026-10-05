@@ -1,21 +1,29 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLanguage } from "../i18n/LanguageContext";
-import { gallery } from "../data/images";
+import { fullGallery, gallery } from "../data/images";
 import Reveal from "./Reveal";
 import { XIcon } from "./icons";
 
-export default function Gallery() {
+function getFullResolutionSrc(src: string) {
+  return src.replace("&ctp=s206x206", "");
+}
+
+export default function Gallery({ fullPage = false }: { fullPage?: boolean }) {
   const { t } = useLanguage();
+  const galleryPhotos = fullPage ? fullGallery : gallery;
+  const photos = galleryPhotos.filter(
+    (photo, index) => galleryPhotos.findIndex((candidate) => candidate.src === photo.src) === index,
+  );
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const close = useCallback(() => setActiveIndex(null), []);
   const next = useCallback(
-    () => setActiveIndex((i) => (i === null ? null : (i + 1) % gallery.length)),
-    [],
+    () => setActiveIndex((i) => (i === null ? null : (i + 1) % photos.length)),
+    [photos.length],
   );
   const prev = useCallback(
-    () => setActiveIndex((i) => (i === null ? null : (i - 1 + gallery.length) % gallery.length)),
-    [],
+    () => setActiveIndex((i) => (i === null ? null : (i - 1 + photos.length) % photos.length)),
+    [photos.length],
   );
 
   useEffect(() => {
@@ -44,29 +52,50 @@ export default function Gallery() {
             {t.gallery.title}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-navy-700/90 sm:text-lg">
-            {t.gallery.subtitle}
+            {fullPage ? t.gallery.pageSubtitle : t.gallery.subtitle}
           </p>
         </Reveal>
 
         <Reveal delay={1}>
-          <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3">
-            {gallery.map((photo, i) => (
+          <div className="mt-14 grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {photos.map((photo, i) => (
               <button
-                key={photo.src}
+                key={`${photo.src}-${i}`}
                 type="button"
                 onClick={() => setActiveIndex(i)}
-                className="group mb-5 block w-full break-inside-avoid overflow-hidden rounded-2xl shadow-soft transition-shadow duration-300 hover:shadow-lift"
+                className="group block w-full overflow-hidden rounded-2xl shadow-soft transition-shadow duration-300 hover:shadow-lift"
               >
                 <img
-                  src={photo.src}
+                  src={getFullResolutionSrc(photo.src)}
                   alt={photo.alt}
                   loading="lazy"
-                  className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </button>
             ))}
           </div>
         </Reveal>
+
+        {!fullPage && (
+          <div className="mt-10 text-center">
+            <a
+              href="/gallery"
+              className="inline-flex items-center justify-center rounded-full bg-navy-900 px-7 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:-translate-y-0.5 hover:bg-navy-800 hover:shadow-lift sm:text-base"
+            >
+              {t.gallery.seeMore}
+            </a>
+          </div>
+        )}
+        {fullPage && (
+          <div className="mt-10 text-center">
+            <a
+              href="/#galerie"
+              className="inline-flex items-center justify-center rounded-full bg-navy-900 px-7 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:-translate-y-0.5 hover:bg-navy-800 hover:shadow-lift sm:text-base"
+            >
+              {t.gallery.backToGallery}
+            </a>
+          </div>
+        )}
       </div>
 
       {activeIndex !== null && (
@@ -109,13 +138,14 @@ export default function Gallery() {
           </button>
 
           <figure
-            className="max-h-[85vh] max-w-4xl overflow-hidden rounded-2xl"
+            className="aspect-[4/3] w-[min(100%,113.333vh)] max-w-4xl overflow-hidden rounded-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={gallery[activeIndex].src}
-              alt={gallery[activeIndex].alt}
-              className="max-h-[85vh] w-full object-contain"
+              src={getFullResolutionSrc(photos[activeIndex].src)}
+              alt={photos[activeIndex].alt}
+              loading="lazy"
+              className="aspect-[4/3] h-full w-full object-cover"
             />
           </figure>
         </div>

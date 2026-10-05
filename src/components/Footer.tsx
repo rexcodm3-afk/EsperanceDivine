@@ -17,13 +17,15 @@ const FACEBOOK_URL =
 
 export default function Footer() {
   const { t } = useLanguage();
+  const onGalleryPage = window.location.pathname.replace(/\/+$/, "") === "/gallery";
+  const homeHref = (href: string) => (onGalleryPage ? `/${href}` : href);
 
   return (
     <footer className="bg-navy-950 pb-8 pt-16 text-white sm:pt-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <a href="#accueil" className="flex items-center gap-3">
+            <a href={homeHref("#accueil")} className="flex items-center gap-3">
               <span className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white shadow-soft ring-2 ring-white/20">
                 <img
                   src="/logo.jpg"
@@ -56,7 +58,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-3">
               {QUICK_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-sm text-white/75 transition-colors hover:text-white">
+                  <a href={homeHref(link.href)} className="text-sm text-white/75 transition-colors hover:text-white">
                     {t.nav[link.key]}
                   </a>
                 </li>

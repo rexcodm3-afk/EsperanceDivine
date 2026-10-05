@@ -107,6 +107,9 @@ export const fr = {
     eyebrow: "Galerie",
     title: "Découvrez notre environnement",
     subtitle: "Quelques moments de la vie à Espérance Divine.",
+    pageSubtitle: "Découvrez davantage de moments de la vie à Espérance Divine.",
+    seeMore: "Voir plus de photos",
+    backToGallery: "Retour à la galerie",
   },
   news: {
     eyebrow: "Actualités",
@@ -260,6 +263,9 @@ export const en: Dictionary = {
     eyebrow: "Gallery",
     title: "Discover Our Environment",
     subtitle: "A few moments from life at Espérance Divine.",
+    pageSubtitle: "Explore more moments from life at Espérance Divine.",
+    seeMore: "See more photos",
+    backToGallery: "Back to gallery",
   },
   news: {
     eyebrow: "News",
